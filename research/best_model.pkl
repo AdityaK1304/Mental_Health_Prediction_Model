@@ -1,9 +1,0 @@
-import pickle
-def save_model(models, best_model_name, scaler):
-
-    best_model = models[best_model_name]
-
-    pickle.dump(best_model, open("best_model.pkl", "wb"))
-    pickle.dump(scaler, open("scaler.pkl", "wb"))
-
-    print("\nBest Model Saved Successfully")
