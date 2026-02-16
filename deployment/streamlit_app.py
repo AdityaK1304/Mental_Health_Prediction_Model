@@ -24,10 +24,8 @@ categorical_cols = {
     "anonymity": ["Yes", "No", "Don't know"],
     "leave": ["Very easy", "Somewhat easy", "Somewhat difficult", "Very difficult", "Don't know"],
     "mental_health_consequence": ["Yes", "No", "Maybe"],
-    "coworkers": ["Yes", "No", "Some of them"],
     "supervisor": ["Yes", "No", "Some of them"],
-    "mental_health_interview": ["Yes", "No", "Maybe"],
-    "obs_consequence": ["Yes", "No"]
+    "mental_health_interview": ["Yes", "No", "Maybe"]
 }
 
 # collect numerical inputs
