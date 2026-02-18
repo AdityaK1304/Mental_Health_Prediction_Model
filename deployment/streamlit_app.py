@@ -2,49 +2,46 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-with open('research/best_model.pkl', 'rb') as file:
-    best_model = pickle.load(file)
+# --------Load Saved Pipeline--------
+with open("research/best_model.pkl", "rb") as f:
+    best_model = pickle.load(f)
 
-with open('research/scaler.pkl', 'rb') as file:
-    scaler = pickle.load(file)
+with open("research/label_encoder.pkl", "rb") as f:
+    label_encoder = pickle.load(f)
 
-    # numerical features
-numeric_cols = {
-        'Age':(3,75,1)
-    }
+st.title("🧠 Mental Health Prediction App")
 
-    # categorical features
-    # -------- Categorical Columns --------
-categorical_cols = {
-    "Gender": ["Male", "Female", "Other"],
-    "family_history": ["Yes", "No"],
-    "work_interfere": ["Never", "Rarely", "Sometimes", "Often"],
-    "benefits": ["Yes", "No", "Don't know"],
-    "care_options": ["Yes", "No", "Not sure"],
-    "anonymity": ["Yes", "No", "Don't know"],
-    "leave": ["Very easy", "Somewhat easy", "Somewhat difficult", "Very difficult", "Don't know"],
-    "mental_health_consequence": ["Yes", "No", "Maybe"],
-    "supervisor": ["Yes", "No", "Some of them"],
-    "mental_health_interview": ["Yes", "No", "Maybe"]
+# --------Numeric Feature--------
+numeric_cols = { 
+    'Age': (15, 75, 18)
 }
-
-# collect numerical inputs
 
 numeric_input = {}
 for col, (min_val, max_val, step) in numeric_cols.items():
-    # Generate a list of options for the selectbox
     options = list(range(min_val, max_val + 1, step))
-    numeric_input[col] = st.selectbox(col, options, index=options.index(min_val))
+    numeric_input[col] = st.select_slider(col, options, value=min_val)
 
-# collect categoric input
+
+# --------Categorical Features--------
+categorical_cols = {
+    "Gender": ["Male", "Female"],
+    "family_history": ["Yes", "No"],
+    "work_interfere": ["Never", "Rarely", "Sometimes", "Often"],
+    "Remote_work":['Yes','No'],
+    "benefits": ["Yes", "No", "Don't know"],
+    "care_options": ["Yes", "No", "Not sure"],
+    "anonymity": ["Yes", "No", "Don't know"],
+    "mental_health_consequence": ["Yes", "No", "Maybe"],
+    "mental_health_interview": ["Yes", "No", "Maybe"]
+}
 
 categoric_input = {}
 for col, options in categorical_cols.items():
-  categoric_input[col] = st.selectbox(col, options)
+    categoric_input[col] = st.selectbox(col, options)
 
-# combine input into DataFrame
 
-input_data = {**numeric_input,**categoric_input}
+# --------Create DataFrame--------
+input_data = {**numeric_input, **categoric_input}
 input_df = pd.DataFrame([input_data])
 
 # predict
