@@ -3,29 +3,27 @@ import pandas as pd
 import pickle
 
 # --------Load Saved Pipeline--------
-with open("research/best_model.pkl", "rb") as f:
-    best_model = pickle.load(f)
+with open("research/mental_health.pkl", "rb") as f:
+    model = pickle.load(f)
+    
 
-with open("research/label_encoder.pkl", "rb") as f:
-    label_encoder = pickle.load(f)
-
-st.title("🧠 Mental Health Prediction App")
+st.title("Mental Health Prediction App")
 
 # --------Numeric Feature--------
 numeric_cols = { 
     'Age': (15, 75, 18)
 }
 
+# Collect numeric inputs
 numeric_input = {}
-for col, (min_val, max_val, step) in numeric_cols.items():
-    options = list(range(min_val, max_val + 1, step))
-    numeric_input[col] = st.select_slider(col, options, value=min_val)
+for col, (min_val, max_val, default) in numeric_cols.items():
+    numeric_input[col] = st.slider(col, min_value=min_val, max_value=max_val, value=default)
 
 
 # --------Categorical Features--------
 categorical_cols = {
 
-    "Gender": ["Male", "Female"],
+    "Gender": ['Male', 'Female'],
     "self_employed": ["Yes", "No"],
     "family_history": ["Yes", "No"],
     "work_interfere": ["Never", "Rarely", "Sometimes", "Often", "Don't know"],
@@ -61,5 +59,5 @@ input_df = pd.DataFrame([input_data])
 # predict
 
 if st.button("Predict"):
-  pred = best_model.predict(input_df)
+  pred = model.predict(input_df)
   st.subheader(f"Mental Health Prediction:{'yes' if pred[0] == 1 else "No"}")
