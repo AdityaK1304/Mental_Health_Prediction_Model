@@ -24,16 +24,30 @@ for col, (min_val, max_val, step) in numeric_cols.items():
 
 # --------Categorical Features--------
 categorical_cols = {
+
     "Gender": ["Male", "Female"],
+    "self_employed": ["Yes", "No"],
     "family_history": ["Yes", "No"],
-    "work_interfere": ["Never", "Rarely", "Sometimes", "Often"],
-    "Remote_work":['Yes','No'],
+    "work_interfere": ["Never", "Rarely", "Sometimes", "Often", "Don't know"],
+    "no_employees": ["1-5", "6-25", "26-100", "100-500", "500-1000", "More than 1000"],
+    "remote_work": ["Yes", "No"],
+    "tech_company": ["Yes", "No"],
     "benefits": ["Yes", "No", "Don't know"],
     "care_options": ["Yes", "No", "Not sure"],
+    "wellness_program": ["Yes", "No", "Don't know"],
+    "seek_help": ["Yes", "No", "Don't know"],
     "anonymity": ["Yes", "No", "Don't know"],
+    "leave": ["Very easy", "Somewhat easy", "Somewhat difficult", "Very difficult", "Don't know"],
     "mental_health_consequence": ["Yes", "No", "Maybe"],
-    "mental_health_interview": ["Yes", "No", "Maybe"]
+    "phys_health_consequence": ["Yes", "No", "Maybe"],
+    "coworkers": ["Yes", "No", "Some of them"],
+    "supervisor": ["Yes", "No", "Some of them"],
+    "mental_health_interview": ["Yes", "No", "Maybe"],
+    "phys_health_interview": ["Yes", "No", "Maybe"],
+    "mental_vs_physical": ["Yes", "No", "Don't know"],  
+    "obs_consequence": ["Yes", "No"]
 }
+
 
 categoric_input = {}
 for col, options in categorical_cols.items():
