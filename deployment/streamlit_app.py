@@ -6,7 +6,7 @@ import pickle
 with open("research/mental_health.pkl", "rb") as f:
     model = pickle.load(f)
 
-st.title("🧠 Mental Health Treatment Prediction")
+st.title(" Mental Health Treatment Prediction")
 
 # Numeric
 age = st.slider("Age", 15, 75, 25)
@@ -67,20 +67,20 @@ if st.button("Predict"):
     percent = round(treatment_prob * 100, 2)
 
     st.subheader("Mental Health Assessment Result")
-    st.write(f"🧠 Your mental health treatment likelihood is **{percent}%**.")
+    st.write(f" Your mental health treatment likelihood is **{percent}%**.")
     st.progress(treatment_prob)
 
     # Logical thresholding
     if treatment_prob < 0.40:
-        st.success("🟢 Low Risk Level")
+        st.success(" Low Risk Level")
         st.write("Your responses indicate a low likelihood of requiring professional treatment.")
     
     elif 0.40 <= treatment_prob < 0.70:
-        st.warning("🟡 Moderate Risk Level")
+        st.warning(" Moderate Risk Level")
         st.write("There are moderate indicators present. Monitoring your mental well-being or consulting a professional may be beneficial.")
     
     else:
-        st.error("🔴 High Risk Level")
+        st.error(" High Risk Level")
         st.write("Your responses strongly suggest that professional mental health support may be beneficial.")
 
-    st.caption("⚠️ This result is based on a machine learning prediction and should not be considered a medical diagnosis.")
+    st.caption(" This result is based on a machine learning prediction and should not be considered a medical diagnosis.")
