@@ -83,4 +83,4 @@ if st.button("Predict"):
         st.error(" High Risk Level")
         st.write("Your responses strongly suggest that professional mental health support may be beneficial.")
 
-    st.caption(" This result is based on a machine learning prediction and should not be considered a medical diagnosis.")
+    
